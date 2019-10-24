@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+\begin{document}
+
+\begin{figure}[h!]
+  \centering
+  \pgfkeys{/pgf/number format/.cd,1000 sep={\,}}  
+  \begin{tikzpicture}
+    \begin{axis}[
+      grid=major,
+      legend style={at={(0.5,-0.2)},anchor=north,legend columns=2},
+      xlabel=Year,
+      xtick=data,
+      ymin=0
+      ]
+      \addplot+ [blue] table[x=Year, y=Number of students, col sep=comma] {../csvs/students.csv};
+      \addplot+ [red] table[x=Year, y=Average grade, col sep=comma] {../csvs/students.csv};
+      \legend{Number of students,Average grade}      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Test of pgfplots}
+  \label{fig:ladidad}
+\end{figure}
+
+\end{document}
+
+
