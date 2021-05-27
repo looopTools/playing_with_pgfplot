@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+\begin{document}
+
+This examples show cases ploting simple bar plots using \texttt{pgfplots}.
+To change a simple line plot to a bar plot add the \texttt{ybar} keyword to the \texttt{axis} configuration. 
+
+
+
+\begin{figure}[h!]
+  \centering
+  \pgfkeys{/pgf/number format/.cd,1000 sep={\,}}  
+  \begin{tikzpicture}
+    \begin{axis}[
+      grid=major,
+      ybar,
+      legend style={at={(0.5,-0.2)},anchor=north,legend columns=2},
+      xlabel=Year,
+      xtick=data,
+      ymin=0
+      ]
+      \addplot [blue] table[x=Year, y=Number of students, col sep=comma] {../csvs/students.csv};
+      \addplot [red] table[x=Year, y=Average grade, col sep=comma] {../csvs/students.csv};
+      \legend{Number of students,Average grade}      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Test of pgfplots}
+  \label{fig:ladidad}
+\end{figure}
+
+The plot above can be hard to read as the bars are not filled, to change this add the \texttt{fill=<COLOR>} to \texttt{addplot} command and replac \texttt{<COLOR>} with your color of choice as shown here
+
+\begin{verbatim}
+\addplot [red, fill=red] table[x=Year, y=Average grade, col sep=comma]
+     {../csvs/students.csv};} 
+\end{verbatim}
+
+\begin{figure}[h!]
+  \centering
+  \pgfkeys{/pgf/number format/.cd,1000 sep={\,}}  
+  \begin{tikzpicture}
+    \begin{axis}[
+      grid=major,
+      ybar,
+      legend style={at={(0.5,-0.2)},anchor=north,legend columns=2},
+      xlabel=Year,
+      xtick=data,
+      ymin=0
+      ]
+      \addplot [blue, fill=blue] table[x=Year, y=Number of students, col sep=comma] {../csvs/students.csv};
+      \addplot [red, fill=red] table[x=Year, y=Average grade, col sep=comma] {../csvs/students.csv};
+      \legend{Number of students,Average grade}      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Test of pgfplots with fill}
+  \label{fig:ladidad2}
+\end{figure}
+
+\end{document}
+
+

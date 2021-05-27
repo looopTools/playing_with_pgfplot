@@ -8,13 +8,16 @@ SRC = latex
 
 PARAMS = -output-directory $(OUT)
 
-all: setup basic basic_with_markers
+all: setup basic basic_with_markers bar_plot
 
 basic:
-	$(CC) $(PARAMS) $(SRC)/basic.tex
+	$(CC) $(PARAMS) $(SRC)/basic
 
 basic_with_markers:
-	$(CC) $(PARAMS) $(SRC)/basic_with_marker.tex
+	$(CC) $(PARAMS) $(SRC)/basic_with_marker
+
+bar_plot:
+	$(CC) $(PARAMS) $(SRC)/bar_plot
 
 
 setup:
